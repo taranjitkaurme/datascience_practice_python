@@ -6,16 +6,11 @@ name = "pypi"
 [packages]
 numpy = "*"
 jupyterlab = "*"
-notebook = "*"
-chardet = "*"
-prompt-toolkit = "*"
-nbclient = "*"
-ipykernel = "*"
-ipython = "*"
+
 
 [dev-packages]
 pipdeptree = "*"
 
 [requires]
 python_version = "3.11"
-python_full_version = "3.11.0"
+python_full_version = "3.11.6"
