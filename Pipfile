@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 numpy = "*"
 jupyterlab = "*"
-
+pandas = "*"
 
 [dev-packages]
 pipdeptree = "*"
