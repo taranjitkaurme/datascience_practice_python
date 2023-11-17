@@ -8,6 +8,7 @@ numpy = "*"
 jupyterlab = "*"
 pandas = "*"
 matplotlib = "*"
+flask = "*"
 
 [dev-packages]
 pipdeptree = "*"
