@@ -1,10 +1,12 @@
 from flask import Flask, jsonify
+from src.models.user_profile import UserProfile
 
 app = Flask(__name__)
 
 # Define a route for the API endpoint
 @app.route('/api/data', methods=['GET'])
 def get_data():
+    UserProfile.to_dict();
     # Hardcoded response
     data = {
         'message': 'Hello, this is your API response!',

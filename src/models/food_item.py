@@ -8,4 +8,11 @@ class FoodItem:
         self.protein = protein
         self.fats = fats
 
-    # Add other methods as needed
+    def to_dict(self):
+        return {
+            'name': self.name,
+            'calories': self.calories,
+            'carbs': self.carbs,
+            'protein': self.protein,
+            'fats': self.fats
+        }
