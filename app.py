@@ -1,18 +1,88 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from src.models.user_profile import UserProfile
+from src.models.food_item import FoodItem
+from src.models.exercise import Exercise
+from src.models.meal import Meal
 
 app = Flask(__name__)
 
-# Define a route for the API endpoint
-@app.route('/api/data', methods=['GET'])
-def get_data():
-    # Hardcoded response
-    data = {
-        'message': 'Hello, this is your API response!',
-        'status': 'success'
-    }
-    return jsonify(data)
+# Sample data for initialization (replace with your own data or load from a database)
+user_profile_data = {
+    'user_id': 1,
+    'age': 25,
+    'weight': 70,
+    'height': 175,
+    'fitness_goals': 'Build muscle',
+    'dietary_restrictions': ['Vegetarian']
+}
+
+food_item_data = {
+    'food_id': 1,
+    'name': 'Broccoli',
+    'calories': 55,
+    'carbs': 11,
+    'protein': 3,
+    'fats': 0.6
+}
+
+exercise_data = {
+    'exercise_id': 1,
+    'name': 'Running',
+    'duration_minutes': 30
+}
+
+meal_data = {
+    'meal_id': 1,
+    'name': 'Salad',
+    'calories': 200,
+    'carbs': 15,
+    'protein': 10,
+    'fats': 12
+}
+
+
+# Initialize sample data
+user_profiles = [UserProfile(**user_profile_data)]
+food_items = [FoodItem(**food_item_data)]
+exercises = [Exercise(**exercise_data)]
+meals = [Meal(**meal_data)]
+
+
+# API endpoint for retrieving a user profile
+@app.route('/api/get_user_profile/<int:user_id>', methods=['GET'])
+def get_user_profile(user_id):
+    get_profile = UserProfile.read(user_id,user_profiles)
+    if get_profile:
+        return jsonify(get_profile.to_dict())  # Use to_dict method to jsonify the profile
+    else:
+        return jsonify({'message': 'User profile not found'})
+
+
+# API endpoint for creating a user profile
+@app.route('/api/create_user_profile', methods=['POST'])
+def create_user_profile():
+    data = request.get_json()
+    new_user_profile = UserProfile(**data)
+    user_profiles.create(new_user_profile)
+    return jsonify({'message': 'User profile created successfully'})
+
+
+# API endpoint for updating a user profile
+@app.route('/api/update_user_profile/<int:user_id>', methods=['PUT'])
+def update_user_profile(user_id):
+    data = request.get_json()
+    user_profiles.update(user_id, data)
+    return jsonify({'message': 'User profile updated successfully'})
+
+
+# API endpoint for deleting a user profile
+@app.route('/api/delete_user_profile/<int:user_id>', methods=['DELETE'])
+def delete_user_profile(user_id):
+    user_profiles.delete(user_id)
+    return jsonify({'message': 'User profile deleted successfully'})
+
+
+# Similar API endpoints for FoodItem, Exercise, and Meal CRUD operations...
 
 if __name__ == '__main__':
-    # Run the application on http://localhost:5000
     app.run(debug=True)

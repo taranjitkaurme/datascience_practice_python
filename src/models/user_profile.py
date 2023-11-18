@@ -1,7 +1,8 @@
 # user_profile.py
 
 class UserProfile:
-    def __init__(self, age, weight, height, fitness_goals, dietary_restrictions):
+    def __init__(self, user_id, age, weight, height, fitness_goals, dietary_restrictions):
+        self.user_id = user_id
         self.age = age
         self.weight = weight
         self.height = height
@@ -10,12 +11,36 @@ class UserProfile:
 
     def to_dict(self):
         return {
+            'user_id': self.user_id,
             'age': self.age,
             'weight': self.weight,
             'height': self.height,
             'fitness_goals': self.fitness_goals,
             'dietary_restrictions': self.dietary_restrictions
         }
+# CRUD operations for UserProfile
+
+
+    @classmethod
+    def read(cls, user_id, user_profiles):
+        print(user_profiles)
+        return next((profile for profile in user_profiles if profile.user_id == user_id), None)
+
+    @classmethod
+    def create(cls, user_profile, user_profiles):
+        user_profiles.append(user_profile)
+
+
+    @classmethod
+    def update(user_id, new_data, user_profiles):
+        profile = read(user_id, user_profiles))
+        if profile:
+            for key, value in new_data.items():
+                setattr(profile, key, value)
+
+    @classmethod
+    def delete(cls, user_id, user_profiles):
+        cls.user_profiles = [profile for profile in user_profiles if profile.user_id != user_id]
 
     def update_weight(self, new_weight):
         self.weight = new_weight
