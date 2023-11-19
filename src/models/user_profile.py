@@ -1,6 +1,18 @@
 # user_profile.py
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
+class UserProfile(db.Model):
+    __tablename__ = "UserProfile"
 
-class UserProfile:
+    user_id = db.Column(db.Integer, primary_key=True)
+    age = db.Column(db.Integer())
+    weight = db.Column(db.Integer())
+    height = db.Column(db.Integer())
+    fitness_goals = db.Column(db.String())
+    dietary_restrictions= db.Column(db.String())
+
+    position = db.Column(db.String(80))
+
     def __init__(self, user_id, age, weight, height, fitness_goals, dietary_restrictions):
         self.user_id = user_id
         self.age = age

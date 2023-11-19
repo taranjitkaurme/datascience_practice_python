@@ -9,6 +9,7 @@ jupyterlab = "*"
 pandas = "*"
 matplotlib = "*"
 flask = "*"
+flask-sqlalchemy = "*"
 
 [dev-packages]
 pipdeptree = "*"

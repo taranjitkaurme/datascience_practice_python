@@ -3,8 +3,17 @@ from src.models.user_profile import UserProfile
 from src.models.food_item import FoodItem
 from src.models.exercise import Exercise
 from src.models.meal import Meal
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///diet_tracker.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
+@app.before_first_request
+def create_table():
+    db.create_all()
 
 # Sample data for initialization (replace with your own data or load from a database)
 user_profile_data = {
