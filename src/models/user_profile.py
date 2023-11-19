@@ -20,7 +20,6 @@ class UserProfile:
         }
 # CRUD operations for UserProfile
 
-
     @classmethod
     def read(cls, user_id, user_profiles):
         print(user_profiles)
@@ -30,17 +29,16 @@ class UserProfile:
     def create(cls, user_profile, user_profiles):
         user_profiles.append(user_profile)
 
-
     @classmethod
-    def update(user_id, new_data, user_profiles):
-        profile = read(user_id, user_profiles))
+    def update(cls, user_id, new_data, user_profiles):
+        profile = cls.read(user_id, user_profiles)
         if profile:
             for key, value in new_data.items():
                 setattr(profile, key, value)
 
     @classmethod
     def delete(cls, user_id, user_profiles):
-        cls.user_profiles = [profile for profile in user_profiles if profile.user_id != user_id]
+        user_profiles = [profile for profile in user_profiles if profile.user_id != user_id]
 
     def update_weight(self, new_weight):
         self.weight = new_weight

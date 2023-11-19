@@ -51,7 +51,7 @@ meals = [Meal(**meal_data)]
 # API endpoint for retrieving a user profile
 @app.route('/api/get_user_profile/<int:user_id>', methods=['GET'])
 def get_user_profile(user_id):
-    get_profile = UserProfile.read(user_id,user_profiles)
+    get_profile = UserProfile.read(user_id, user_profiles)
     if get_profile:
         return jsonify(get_profile.to_dict())  # Use to_dict method to jsonify the profile
     else:
@@ -63,7 +63,7 @@ def get_user_profile(user_id):
 def create_user_profile():
     data = request.get_json()
     new_user_profile = UserProfile(**data)
-    user_profiles.create(new_user_profile)
+    UserProfile.create(user_profiles, new_user_profile)
     return jsonify({'message': 'User profile created successfully'})
 
 
@@ -71,14 +71,14 @@ def create_user_profile():
 @app.route('/api/update_user_profile/<int:user_id>', methods=['PUT'])
 def update_user_profile(user_id):
     data = request.get_json()
-    user_profiles.update(user_id, data)
+    UserProfile.update(user_id, data, user_profiles)
     return jsonify({'message': 'User profile updated successfully'})
 
 
 # API endpoint for deleting a user profile
 @app.route('/api/delete_user_profile/<int:user_id>', methods=['DELETE'])
 def delete_user_profile(user_id):
-    user_profiles.delete(user_id)
+    UserProfile.delete(user_id, user_profiles)
     return jsonify({'message': 'User profile deleted successfully'})
 
 
