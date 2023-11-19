@@ -1,17 +1,17 @@
 # user_profile.py
 from flask_sqlalchemy import SQLAlchemy
+
 db = SQLAlchemy()
+
 class UserProfile(db.Model):
-    __tablename__ = "UserProfile"
+    __tablename__ = "user_profile"
 
     user_id = db.Column(db.Integer, primary_key=True)
-    age = db.Column(db.Integer())
-    weight = db.Column(db.Integer())
-    height = db.Column(db.Integer())
-    fitness_goals = db.Column(db.String())
-    dietary_restrictions= db.Column(db.String())
-
-    position = db.Column(db.String(80))
+    age = db.Column(db.Integer)
+    weight = db.Column(db.Float)
+    height = db.Column(db.Float)
+    fitness_goals = db.Column(db.String(255))
+    dietary_restrictions = db.Column(db.String(255))
 
     def __init__(self, user_id, age, weight, height, fitness_goals, dietary_restrictions):
         self.user_id = user_id
@@ -30,7 +30,8 @@ class UserProfile(db.Model):
             'fitness_goals': self.fitness_goals,
             'dietary_restrictions': self.dietary_restrictions
         }
-# CRUD operations for UserProfile
+
+    # CRUD operations for UserProfile
 
     @classmethod
     def read(cls, user_id, user_profiles):
