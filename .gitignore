@@ -161,3 +161,4 @@ cython_debug/
 
 
 temporary/
+/data/data.db
