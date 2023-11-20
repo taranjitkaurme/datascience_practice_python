@@ -8,7 +8,7 @@ class UserResource(Resource):
     def get(self, user_id=None):
         user = UserService.get_user(user_id)
         if user:
-            return {"user": user.to_dict()}
+            return {"user": user}
         else:
             return {"message": "User not found"}, 404
 
