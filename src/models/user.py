@@ -1,8 +1,6 @@
 # user.py
-from flask_sqlalchemy import SQLAlchemy
-from .location import Location
+from src.database.database import db
 
-db = SQLAlchemy()
 
 
 class User(db.Model):
@@ -13,5 +11,5 @@ class User(db.Model):
     name = db.Column(db.String(255))
     #location_id = db.Column(db.Integer, db.ForeignKey('location.location_id'))
 
-    location = db.relationship('Location', backref='user', lazy=True)
-    user_company_mappings = db.relationship('UserCompanyMapping', backref='user', lazy=True)
+    # location = db.relationship('Location', backref='user', lazy=True)
+    # user_company_mappings = db.relationship('UserCompanyMapping', backref='user', lazy=True)

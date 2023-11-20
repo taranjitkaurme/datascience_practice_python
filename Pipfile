@@ -10,6 +10,7 @@ pandas = "*"
 matplotlib = "*"
 flask = "*"
 flask-sqlalchemy = "*"
+flask-restful = "*"
 
 [dev-packages]
 pipdeptree = "*"
