@@ -12,8 +12,12 @@ flask = "*"
 flask-sqlalchemy = "*"
 flask-restful = "*"
 
+
 [dev-packages]
 pipdeptree = "*"
+unittest = "*"
+flask-testing = "*"
+
 
 [requires]
 python_version = "3.11"
