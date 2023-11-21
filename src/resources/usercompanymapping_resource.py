@@ -3,6 +3,52 @@ from src.services.usercompanymapping_service import UserCompanyMappingService
 
 class UserCompanyMappingResource(Resource):
     def get(self, mapping_id=None):
+
+        """
+        Represents the RESTful API resource for managing user-company mapping information.
+
+        Endpoints:
+            GET /api/user_company_mapping/<int:mapping_id>:
+                Retrieves information about a specific user-company mapping.
+            POST /api/user_company_mapping:
+                Creates a new user-company mapping.
+            PUT /api/user_company_mapping/<int:mapping_id>:
+                Updates information about a specific user-company mapping.
+            DELETE /api/user_company_mapping/<int:mapping_id>:
+                Deletes a specific user-company mapping.
+
+        Methods:
+            get(self, mapping_id=None):
+                Retrieves information about a specific user-company mapping or a list of all mappings.
+
+            post(self):
+                Creates a new user-company mapping based on the provided information.
+
+            put(self, mapping_id):
+                Updates information about a specific user-company mapping.
+
+            delete(self, mapping_id):
+                Deletes a specific user-company mapping.
+
+        Request Parameters:
+            mapping_id (int, optional): The unique identifier of the user-company mapping (for GET, PUT, and DELETE operations).
+
+        Request JSON Payload (for POST and PUT operations):
+            {
+                "user_id": 1,
+                "company_id": 1,
+                "position_id": 1,
+                "location_id": 1,
+                "start_year": 2022,
+                "end_year": 2023,
+                "current_company": false
+            }
+
+        Returns:
+            dict: A JSON response containing the result of the corresponding operation.
+
+        """
+
         return UserCompanyMappingService.get_user_company_mapping(mapping_id)
 
     def post(self):

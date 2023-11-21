@@ -2,6 +2,39 @@ from src.models.position import Position
 from src.database.database import db
 
 class PositionService:
+
+    """
+    Service class for managing position-related operations.
+
+    Methods:
+        get_position(position_id):
+            Retrieves information about a specific position or a list of all positions.
+
+        create_position(title):
+            Creates a new position with the provided title.
+
+        update_position(position_id, title):
+            Updates information about a specific position.
+
+        delete_position(position_id):
+            Deletes a specific position.
+
+    Parameters:
+        position_id (int): The unique identifier of the position (for get, update, and delete operations).
+        title (str): The title of the position (for create and update operations).
+
+    Returns:
+        dict: A dictionary containing the result of the corresponding operation.
+
+    Example Usage:
+        position_service = PositionService()
+        position_info = position_service.get_position(position_id=1)
+        new_position_result = position_service.create_position(title="New Position")
+        update_position_result = position_service.update_position(position_id=1, title="Updated Position")
+        delete_position_result = position_service.delete_position(position_id=1)
+
+    """
+
     @staticmethod
     def get_position(position_id):
         if position_id:
