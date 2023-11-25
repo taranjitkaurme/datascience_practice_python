@@ -7,6 +7,19 @@ from src.models.position import Position
 from src.services.position_service import PositionService
 from src.database.database import db
 
+
+def test_create_position(app):
+    """
+    Test the create_position method of PositionService.
+    """
+    # Call the create_position method
+    with app.app_context():
+        result = PositionService.create_position(title="Data Scientist")
+
+        # Assert the result
+        assert result[0] == {"message": "Position created successfully"}
+
+
 def test_get_position(app):
     """
     Test the get_position method of PositionService.
@@ -23,16 +36,6 @@ def test_get_position(app):
         # Assert the result
         assert result == {"position_id": position.position_id, "title": position.title}
 
-def test_create_position(app):
-    """
-    Test the create_position method of PositionService.
-    """
-    # Call the create_position method
-    with app.app_context():
-        result = PositionService.create_position(title="Data Scientist")
-
-        # Assert the result
-        assert result == {"message": "Position created successfully"}
 
 def test_update_position(app):
     """
@@ -50,6 +53,7 @@ def test_update_position(app):
 
         # Assert the result
         assert result == {"message": "Position updated successfully"}
+
 
 def test_delete_position(app):
     """
