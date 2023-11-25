@@ -2,6 +2,7 @@ import pytest
 from flask import Flask
 from flask_restful import Api
 from src.database.database import db as db_instance
+from sqlalchemy.orm import sessionmaker
 from flask_sqlalchemy import SQLAlchemy
 
 @pytest.fixture(scope='session')
@@ -25,7 +26,7 @@ def app():
         db_instance.create_all()
 
     return app
-
+'''
 @pytest.fixture(scope='session')
 def client(app):
     """
@@ -54,7 +55,8 @@ def session(app, db):
         transaction = connection.begin()
 
         options = dict(bind=connection, binds={})
-        session = db.create_scoped_session(options=options)
+        Session = sessionmaker(**options)  # Use sessionmaker directly
+        session = Session()
 
         db.session = session
 
@@ -63,3 +65,4 @@ def session(app, db):
         transaction.rollback()
         connection.close()
         session.remove()
+        '''
