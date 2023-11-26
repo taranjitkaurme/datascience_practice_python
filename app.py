@@ -29,5 +29,6 @@ api.add_resource(CompanyResource, '/api/company', '/api/company/<int:company_id>
 api.add_resource(PositionResource, '/api/position', '/api/position/<int:position_id>')
 api.add_resource(UserCompanyMappingResource, '/api/usercompanymapping', '/api/usercompanymapping/<int:mapping_id>')
 
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -13,10 +13,12 @@ flask-sqlalchemy = "*"
 flask-restful = "*"
 flask-testing = "*"
 pytest = "*"
+sphinx-rtd-theme = "*"
 
 [dev-packages]
 pipdeptree = "*"
 flask-testing = "*"
+sphinx = "*"
 
 [requires]
 python_version = "3.11"

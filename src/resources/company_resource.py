@@ -2,8 +2,8 @@ from flask_restful import Resource, reqparse
 from src.services.company_service import CompanyService
 from src.utility.decorators import log_request
 
-
 class CompanyResource(Resource):
+
     """
     Represents the RESTful API resource for managing company information.
 
@@ -45,34 +45,22 @@ class CompanyResource(Resource):
 
     @log_request
     def get(self, company_id=None):
-        try:
-            return CompanyService.get_company(company_id)
-        except Exception as e:
-            return {"message": str(e)}, 404
+        return CompanyService.get_company(company_id)
 
     @log_request
     def post(self):
-        try:
-            parser = reqparse.RequestParser()
-            parser.add_argument('name', type=str, required=True, help='name is required')
-            args = parser.parse_args()
-            return CompanyService.create_company(args['name'])
-        except Exception as e:
-            return {"message": str(e)}, 400
+        parser = reqparse.RequestParser()
+        parser.add_argument('name', type=str, required=True, help='name is required')
+        args = parser.parse_args()
+        return CompanyService.create_company(args['name'])
 
     @log_request
     def put(self, company_id):
-        try:
-            parser = reqparse.RequestParser()
-            parser.add_argument('name', type=str, required=True, help='name is required')
-            args = parser.parse_args()
-            return CompanyService.update_company(company_id, args['name'])
-        except Exception as e:
-            return {"message": str(e)}, 404
+        parser = reqparse.RequestParser()
+        parser.add_argument('name', type=str, required=True, help='name is required')
+        args = parser.parse_args()
+        return CompanyService.update_company(company_id, args['name'])
 
     @log_request
     def delete(self, company_id):
-        try:
-            return CompanyService.delete_company(company_id)
-        except Exception as e:
-            return {"message": str(e)}, 404
+        return CompanyService.delete_company(company_id)
