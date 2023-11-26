@@ -1,8 +1,9 @@
 from flask_restful import Resource, reqparse
 from src.services.position_service import PositionService
 from src.utility.decorators import log_request
-class PositionResource(Resource):
 
+
+class PositionResource(Resource):
     """
     Represents the RESTful API resource for managing position information.
 
@@ -44,26 +45,36 @@ class PositionResource(Resource):
 
     @log_request
     def get(self, position_id=None):
-        return PositionService.get_position(position_id)
+        try:
+            return PositionService.get_position(position_id)
+        except Exception as e:
+            return {"message": str(e)}, 404
 
     @log_request
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('title', type=str, required=True, help='title is required')
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('title', type=str, required=True, help='title is required')
+            args = parser.parse_args()
 
-        args = parser.parse_args()
-
-        return PositionService.create_position(title=args['title'])
+            return PositionService.create_position(title=args['title'])
+        except Exception as e:
+            return {"message": str(e)}, 400
 
     @log_request
     def put(self, position_id):
-        parser = reqparse.RequestParser()
-        parser.add_argument('title', type=str, required=True, help='title is required')
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('title', type=str, required=True, help='title is required')
+            args = parser.parse_args()
 
-        args = parser.parse_args()
-
-        return PositionService.update_position(position_id=position_id, title=args['title'])
+            return PositionService.update_position(position_id=position_id, title=args['title'])
+        except Exception as e:
+            return {"message": str(e)}, 404
 
     @log_request
     def delete(self, position_id):
-        return PositionService.delete_position(position_id)
+        try:
+            return PositionService.delete_position(position_id)
+        except Exception as e:
+            return {"message": str(e)}, 404

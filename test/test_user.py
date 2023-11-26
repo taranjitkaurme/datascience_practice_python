@@ -10,7 +10,7 @@ def test_create_user(app):
         result = UserService.create_user(url_link='new_url', name='New User')
 
         # Assertions
-        assert result == "User created successfully"
+        assert result[0]["message"] == "User created successfully"
 
 
 def test_get_user(app):
@@ -32,9 +32,9 @@ def test_update_user(app):
     with app.app_context():
         # Test updating a user
         result = UserService.update_user(1, url_link='updated_url', name='Updated User')
-
+        print(result)
         # Assertions
-        assert result == "User updated successfully"
+        assert result["message"] == "User updated successfully"
 
 
 def test_delete_user(app):
@@ -47,4 +47,4 @@ def test_delete_user(app):
         result = UserService.delete_user(1)
 
         # Assertions
-        assert result == "User deleted successfully"
+        assert result["message"] == "User deleted successfully"

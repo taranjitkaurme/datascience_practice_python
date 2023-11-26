@@ -2,8 +2,8 @@ from flask_restful import Resource, reqparse
 from src.services.user_service import UserService
 from src.utility.decorators import log_request
 
-class UserResource(Resource):
 
+class UserResource(Resource):
     """
     Represents the RESTful API resource for managing user information.
 
@@ -46,44 +46,54 @@ class UserResource(Resource):
 
     @log_request
     def get(self, user_id=None):
-        user = UserService.get_user(user_id)
-        if user:
-            return {"user": user}
-        else:
-            return {"message": "User not found"}, 404
+        try:
+            user = UserService.get_user(user_id)
+            if user:
+                return {"user": user}
+            else:
+                return {"message": "User not found"}, 404
+        except Exception as e:
+            return {"message": str(e)}, 500
 
     @log_request
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('url_link', type=str, required=True, help='url_link is required')
-        parser.add_argument('name', type=str, required=True, help='name is required')
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('url_link', type=str, required=True, help='url_link is required')
+            parser.add_argument('name', type=str, required=True, help='name is required')
+            args = parser.parse_args()
 
-        args = parser.parse_args()
+            response = UserService.create_user(url_link=args['url_link'], name=args['name'])
 
-        response = UserService.create_user(url_link=args['url_link'], name=args['name'])
-
-        return {"message": response}, 201
+            return {"message": response}, 201
+        except Exception as e:
+            return {"message": str(e)}, 400
 
     @log_request
     def put(self, user_id):
-        parser = reqparse.RequestParser()
-        parser.add_argument('url_link', type=str)
-        parser.add_argument('name', type=str)
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('url_link', type=str)
+            parser.add_argument('name', type=str)
+            args = parser.parse_args()
 
-        args = parser.parse_args()
+            response = UserService.update_user(user_id, url_link=args['url_link'], name=args['name'])
 
-        response = UserService.update_user(user_id, url_link=args['url_link'], name=args['name'])
-
-        if response:
-            return {"message": "User updated successfully"}
-        else:
-            return {"message": "User not found"}, 404
+            if response:
+                return {"message": "User updated successfully"}
+            else:
+                return {"message": "User not found"}, 404
+        except Exception as e:
+            return {"message": str(e)}, 500
 
     @log_request
     def delete(self, user_id):
-        response = UserService.delete_user(user_id)
+        try:
+            response = UserService.delete_user(user_id)
 
-        if response:
-            return {"message": "User deleted successfully"}
-        else:
-            return {"message": "User not found"}, 404
+            if response:
+                return {"message": "User deleted successfully"}
+            else:
+                return {"message": "User not found"}, 404
+        except Exception as e:
+            return {"message": str(e)}, 500

@@ -37,6 +37,7 @@ def log_request(func):
 
     return wrapper
 
+
 '''
 def authenticate(api_key):
     #Use this decorator to ensure that only authenticated users can access certain routes.

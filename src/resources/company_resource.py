@@ -2,8 +2,8 @@ from flask_restful import Resource, reqparse
 from src.services.company_service import CompanyService
 from src.utility.decorators import log_request
 
-class CompanyResource(Resource):
 
+class CompanyResource(Resource):
     """
     Represents the RESTful API resource for managing company information.
 
@@ -45,22 +45,34 @@ class CompanyResource(Resource):
 
     @log_request
     def get(self, company_id=None):
-        return CompanyService.get_company(company_id)
+        try:
+            return CompanyService.get_company(company_id)
+        except Exception as e:
+            return {"message": str(e)}, 404
 
     @log_request
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('name', type=str, required=True, help='name is required')
-        args = parser.parse_args()
-        return CompanyService.create_company(args['name'])
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('name', type=str, required=True, help='name is required')
+            args = parser.parse_args()
+            return CompanyService.create_company(args['name'])
+        except Exception as e:
+            return {"message": str(e)}, 400
 
     @log_request
     def put(self, company_id):
-        parser = reqparse.RequestParser()
-        parser.add_argument('name', type=str, required=True, help='name is required')
-        args = parser.parse_args()
-        return CompanyService.update_company(company_id, args['name'])
+        try:
+            parser = reqparse.RequestParser()
+            parser.add_argument('name', type=str, required=True, help='name is required')
+            args = parser.parse_args()
+            return CompanyService.update_company(company_id, args['name'])
+        except Exception as e:
+            return {"message": str(e)}, 404
 
     @log_request
     def delete(self, company_id):
-        return CompanyService.delete_company(company_id)
+        try:
+            return CompanyService.delete_company(company_id)
+        except Exception as e:
+            return {"message": str(e)}, 404
