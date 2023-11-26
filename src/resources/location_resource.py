@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from src.services.location_service import LocationService
+from src.utility.decorators import log_request
 
 class LocationResource(Resource):
     """
@@ -42,9 +43,11 @@ class LocationResource(Resource):
         dict: A JSON response containing the result of the corresponding operation.
     """
 
+    @log_request
     def get(self, location_id=None):
         return LocationService.get_location(location_id)
 
+    @log_request
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('city', type=str, required=True, help='city is required')
@@ -54,6 +57,7 @@ class LocationResource(Resource):
 
         return LocationService.create_location(city=args['city'], state=args['state'], country=args['country'])
 
+    @log_request
     def put(self, location_id):
         parser = reqparse.RequestParser()
         parser.add_argument('city', type=str, required=True, help='city is required')
@@ -63,5 +67,6 @@ class LocationResource(Resource):
 
         return LocationService.update_location(location_id=location_id, city=args['city'], state=args['state'], country=args['country'])
 
+    @log_request
     def delete(self, location_id):
         return LocationService.delete_location(location_id)

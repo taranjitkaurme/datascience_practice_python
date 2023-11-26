@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from src.services.company_service import CompanyService
+from src.utility.decorators import log_request
 
 class CompanyResource(Resource):
 
@@ -42,20 +43,24 @@ class CompanyResource(Resource):
 
     """
 
+    @log_request
     def get(self, company_id=None):
         return CompanyService.get_company(company_id)
 
+    @log_request
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True, help='name is required')
         args = parser.parse_args()
         return CompanyService.create_company(args['name'])
 
+    @log_request
     def put(self, company_id):
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True, help='name is required')
         args = parser.parse_args()
         return CompanyService.update_company(company_id, args['name'])
 
+    @log_request
     def delete(self, company_id):
         return CompanyService.delete_company(company_id)

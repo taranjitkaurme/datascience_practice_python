@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from src.services.position_service import PositionService
-
+from src.utility.decorators import log_request
 class PositionResource(Resource):
 
     """
@@ -42,9 +42,11 @@ class PositionResource(Resource):
 
     """
 
+    @log_request
     def get(self, position_id=None):
         return PositionService.get_position(position_id)
 
+    @log_request
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('title', type=str, required=True, help='title is required')
@@ -53,6 +55,7 @@ class PositionResource(Resource):
 
         return PositionService.create_position(title=args['title'])
 
+    @log_request
     def put(self, position_id):
         parser = reqparse.RequestParser()
         parser.add_argument('title', type=str, required=True, help='title is required')
@@ -61,5 +64,6 @@ class PositionResource(Resource):
 
         return PositionService.update_position(position_id=position_id, title=args['title'])
 
+    @log_request
     def delete(self, position_id):
         return PositionService.delete_position(position_id)

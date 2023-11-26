@@ -5,8 +5,8 @@ from src.resources.location_resource import LocationResource
 from src.resources.company_resource import CompanyResource
 from src.resources.usercompanymapping_resource import UserCompanyMappingResource
 from src.resources.position_resource import PositionResource
-from src.models.user import User
 from src.database.database import db
+
 
 app = Flask(__name__)
 api = Api(app)

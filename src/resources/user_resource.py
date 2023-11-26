@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from src.services.user_service import UserService
-
+from src.utility.decorators import log_request
 
 class UserResource(Resource):
 
@@ -44,6 +44,7 @@ class UserResource(Resource):
 
     """
 
+    @log_request
     def get(self, user_id=None):
         user = UserService.get_user(user_id)
         if user:
@@ -51,6 +52,7 @@ class UserResource(Resource):
         else:
             return {"message": "User not found"}, 404
 
+    @log_request
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('url_link', type=str, required=True, help='url_link is required')
@@ -62,6 +64,7 @@ class UserResource(Resource):
 
         return {"message": response}, 201
 
+    @log_request
     def put(self, user_id):
         parser = reqparse.RequestParser()
         parser.add_argument('url_link', type=str)
@@ -76,6 +79,7 @@ class UserResource(Resource):
         else:
             return {"message": "User not found"}, 404
 
+    @log_request
     def delete(self, user_id):
         response = UserService.delete_user(user_id)
 
