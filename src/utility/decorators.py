@@ -1,24 +1,21 @@
 from functools import wraps
 import logging
-from flask import request, jsonify
+from flask import request
 
 
 logger = logging.getLogger(__name__)
 
-import logging
-from functools import wraps
-from flask import request
 
 def log_request(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        # Configure logging
-        logging.basicConfig(level=logging.DEBUG)
-        handler = logging.StreamHandler()
-        handler.setLevel(logging.DEBUG)
+        # Configure logging to a file
+        logging.basicConfig(filename='request_logs.log', level=logging.DEBUG)
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        handler.setFormatter(formatter)
-        logging.getLogger(__name__).addHandler(handler)
+        file_handler = logging.FileHandler('request_logs.log')
+        file_handler.setLevel(logging.DEBUG)
+        file_handler.setFormatter(formatter)
+        logging.getLogger(__name__).addHandler(file_handler)
 
         try:
             # Log the request details
@@ -39,8 +36,6 @@ def log_request(func):
             raise  # Re-raise the exception after logging
 
     return wrapper
-
-
 
 '''
 def authenticate(api_key):
