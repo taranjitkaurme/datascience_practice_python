@@ -27,8 +27,7 @@ jobs:
 
       - name: Generate Documentation
         run: |
-          # Replace with your actual documentation generation command make html
-           sphinx-build -b html docs/ build/
+          # Replace with your actual documentation generation command make html - sphinx-build -b html docs/ build/
 
       - name: Build Docker Image
         run: docker build -t contact-manager .
