@@ -21,9 +21,9 @@ jobs:
 
       - name: Install Pipenv
         run: |
-          pip install pipenv
+          python -m pip install pipenv
           pipenv install --dev
 
       - name: Deploy to Production
         run: |
-          pipenv run python app.py
+          
