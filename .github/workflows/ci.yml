@@ -30,7 +30,7 @@ jobs:
           # Replace with your actual documentation generation command make html - sphinx-build -b html docs/ build/
 
       - name: Build Docker Image
-        run: docker build -t contact-manager .
+        run: docker build -t taranjitkaurme/datascience_practice_python:latest .
 
       - name: Publish Documentation
         if: success()  # Only publish if tests, documentation, and Docker image build are successful
@@ -40,5 +40,5 @@ jobs:
       - name: Push Docker Image
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker push contact-manager
+          docker push taranjitkaurme/datascience_practice_python:latest
 
