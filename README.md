@@ -1,4 +1,11 @@
 # datascience_practice_python
+
+This repository serves as a comprehensive resource for anyone eager to delve into the world of Python programming. Divided into two distinct parts, it provides a structured learning experience. 
+* The first part features a collection of Jupyter files within the 'practice_python' folder, offering a hands-on and interactive environment for Python practice. These files cover a myriad of topics, from foundational concepts to advanced exercises, facilitating a gradual mastery of the language.
+* In the second part, a robust Flask project awaits exploration, showcasing the practical application of Python in a real-world scenario. With features spanning user management, location tracking, company operations, position handling, and user-company mappings, this Flask RESTful API project offers valuable insights into building scalable and functional applications.
+
+Whether you're a novice honing your Python skills or an experienced developer seeking practical examples, this repository caters to a diverse audience eager to enhance their programming proficiency.
+
 # Flask RESTful API Project
 ## Overview
 This project is a Flask RESTful API that provides endpoints for managing users, locations, companies, positions, and user-company mappings. It follows best practices for structuring a Flask project and includes unit tests using pytest.
