@@ -7,8 +7,12 @@ This repository serves as a comprehensive resource for anyone eager to delve int
 Whether you're a novice honing your Python skills or an experienced developer seeking practical examples, this repository caters to a diverse audience eager to enhance their programming proficiency.
 
 # Python Practice
-Explore the 'practice_python' folder to find Jupyter files for Python practice. You can run these files using Jupyter Notebook or any compatible environment.
-
+Explore the 'practice_python' folder to find Jupyter files for Python practice. 
+1. Python Basics
+2. Data Structures in Python
+3. Data Manipulation and Visualization
+   
+You can run these files using Jupyter Notebook.
 
 # Flask RESTful API Project
 ## Overview
