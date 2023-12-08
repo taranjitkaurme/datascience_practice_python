@@ -103,4 +103,4 @@ Run unit tests using pytest:
 Feel free to contribute by reporting issues, suggesting enhancements, or submitting pull requests. 
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the Apache License - see the LICENSE file for details.
