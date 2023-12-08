@@ -6,6 +6,10 @@ This repository serves as a comprehensive resource for anyone eager to delve int
 
 Whether you're a novice honing your Python skills or an experienced developer seeking practical examples, this repository caters to a diverse audience eager to enhance their programming proficiency.
 
+# Python Practice
+Explore the 'practice_python' folder to find Jupyter files for Python practice. You can run these files using Jupyter Notebook or any compatible environment.
+
+
 # Flask RESTful API Project
 ## Overview
 This project is a Flask RESTful API that provides endpoints for managing users, locations, companies, positions, and user-company mappings. It follows best practices for structuring a Flask project and includes unit tests using pytest.
@@ -18,8 +22,8 @@ This project is a Flask RESTful API that provides endpoints for managing users, 
 * User-Company Mapping management (CRUD operations)
 
 ## Getting Started
-1. Install all the softwares: docker
-1. Pull the image:
+1. Install software: docker
+2. Pull the image:
   ```
   docker pull taranjitkaurme/datascience_practice_python:latest
   ```
@@ -30,21 +34,21 @@ This project is a Flask RESTful API that provides endpoints for managing users, 
   ```
 
 ## Getting Started to contribute
-1. Install all the softwares: python, piipenv, docker, intelliJ, git
+1. Install all the softwares: python, pipenv, docker, intelliJ, git
 
    Note: You can also use - https://github.com/neurabytes/nb-automation-devtools
    
-3. Clone the repository:
+2. Clone the repository:
   ```
   git clone https://github.com/taranjitkaurmee/datascience_practice_python.git
   cd datascience_practice_python
   ```
-4. Install dependencies:  
+3. Install dependencies:  
   ```  
   pipenv install
   ```
 
-5. Run the Flask application:
+4. Run the Flask application:
   ```
   python app.py
   ```
