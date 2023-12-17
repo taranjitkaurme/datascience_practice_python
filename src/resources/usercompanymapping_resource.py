@@ -52,11 +52,8 @@ class UserCompanyMappingResource(Resource):
     @log_request
     def get(self, mapping_id=None):
         try:
-            mapping = UserCompanyMappingService.get_user_company_mapping(mapping_id)
-            if mapping:
-                return {"mapping": mapping}
-            else:
-                return {"message": "UserCompanyMapping not found"}, 404
+            return UserCompanyMappingService.get_user_company_mapping(mapping_id)
+
         except Exception as e:
             return {"message": str(e)}, 500
 

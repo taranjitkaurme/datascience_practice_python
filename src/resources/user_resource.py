@@ -47,11 +47,8 @@ class UserResource(Resource):
     @log_request
     def get(self, user_id=None):
         try:
-            user = UserService.get_user(user_id)
-            if user:
-                return {"user": user}
-            else:
-                return {"message": "User not found"}, 404
+            return UserService.get_user(user_id)
+
         except Exception as e:
             return {"message": str(e)}, 500
 
