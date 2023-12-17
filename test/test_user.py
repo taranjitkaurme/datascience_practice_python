@@ -7,7 +7,7 @@ def test_create_user(app):
         """
     # Test creating a new user
     with app.app_context():
-        result = UserService.create_user(url_link='new_url', name='New User')
+        result = UserService.create_user(url='new_url', name='New User')
 
         # Assertions
         assert result[0]["message"] == "User created successfully"
@@ -22,7 +22,7 @@ def test_get_user(app):
         result = UserService.get_user(1)
 
         # Assertions
-        assert result == {"user_id": 1, "url_link": 'new_url', "name": 'New User'}
+        assert result == {"user_id": 1, "url": 'new_url', "name": 'New User'}
 
 
 def test_update_user(app):
@@ -31,7 +31,7 @@ def test_update_user(app):
         """
     with app.app_context():
         # Test updating a user
-        result = UserService.update_user(1, url_link='updated_url', name='Updated User')
+        result = UserService.update_user(1, url='updated_url', name='Updated User')
         print(result)
         # Assertions
         assert result["message"] == "User updated successfully"

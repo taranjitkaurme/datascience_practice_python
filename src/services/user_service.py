@@ -11,18 +11,18 @@ class UserService:
                 user = User.query.get(user_id)
                 if not user:
                     return {"message": "User not found"}, 404
-                return {"user_id": user.user_id, "url_link": user.url_link, "name": user.name}
+                return {"user_id": user.user_id, "url": user.url, "name": user.name}
             else:
                 users = User.query.all()
-                return [{"user_id": user.user_id, "url_link": user.url_link, "name": user.name} for user in users]
+                return [{"user_id": user.user_id, "url": user.url, "name": user.name} for user in users]
         except Exception as e:
             # Log the exception or handle it accordingly
             return {"message": f"Error in get_user: {str(e)}"}, 500
 
     @staticmethod
-    def create_user(url_link, name):
+    def create_user(url, name):
         try:
-            new_user = User(url_link=url_link, name=name)
+            new_user = User(url=url, name=name)
             db.session.add(new_user)
             db.session.commit()
             return {"message": "User created successfully"}, 201
@@ -31,12 +31,12 @@ class UserService:
             return {"message": f"Error in create_user: {str(e)}"}, 500
 
     @staticmethod
-    def update_user(user_id, url_link=None, name=None):
+    def update_user(user_id, url=None, name=None):
         try:
             user = User.query.get(user_id)
             if user:
-                if url_link:
-                    user.url_link = url_link
+                if url:
+                    user.url = url
                 if name:
                     user.name = name
                 db.session.commit()

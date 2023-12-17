@@ -6,9 +6,11 @@ from src.resources.company_resource import CompanyResource
 from src.resources.usercompanymapping_resource import UserCompanyMappingResource
 from src.resources.position_resource import PositionResource
 from src.database.database import db
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 # Configure the database URI

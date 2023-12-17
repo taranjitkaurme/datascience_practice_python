@@ -35,7 +35,7 @@ class UserResource(Resource):
 
     Request JSON Payload (for POST and PUT operations):
         {
-            "url_link": "User URL Link",
+            "url: "User URL Link",
             "name": "User Name"
         }
 
@@ -59,11 +59,11 @@ class UserResource(Resource):
     def post(self):
         try:
             parser = reqparse.RequestParser()
-            parser.add_argument('url_link', type=str, required=True, help='url_link is required')
+            parser.add_argument('url', type=str, required=True, help='url is required')
             parser.add_argument('name', type=str, required=True, help='name is required')
             args = parser.parse_args()
 
-            response = UserService.create_user(url_link=args['url_link'], name=args['name'])
+            response = UserService.create_user(url=args['url'], name=args['name'])
 
             return {"message": response}, 201
         except Exception as e:
@@ -73,11 +73,11 @@ class UserResource(Resource):
     def put(self, user_id):
         try:
             parser = reqparse.RequestParser()
-            parser.add_argument('url_link', type=str)
+            parser.add_argument('url', type=str)
             parser.add_argument('name', type=str)
             args = parser.parse_args()
 
-            response = UserService.update_user(user_id, url_link=args['url_link'], name=args['name'])
+            response = UserService.update_user(user_id, url=args['url'], name=args['name'])
 
             if response:
                 return {"message": "User updated successfully"}
