@@ -15,6 +15,7 @@ flask-testing = "*"
 pytest = "*"
 sphinx-rtd-theme = "*"
 flask-cors = "*"
+pyspark = "*"
 
 [dev-packages]
 pipdeptree = "*"
